@@ -1,5 +1,7 @@
 const User = require('../models/user-model');
 const bcrypt = require('bcrypt');
+const generateToken = require('../utils/jwt')
+
 const Signup = async (req, res) => {
 
     try {
@@ -53,7 +55,10 @@ const Login = async (req, res) => {
             res.send('Invalid credentaials');
         }
 
-        res.send("Login Successful");
+        const token = generateToken(user);
+        res.cookie('uid', token);
+
+        // render home page
 
     }
     catch (err) {
