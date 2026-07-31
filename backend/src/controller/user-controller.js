@@ -1,6 +1,6 @@
 const User = require('../models/user-model');
 const bcrypt = require('bcrypt');
-const generateToken = require('../utils/jwt')
+const { generateToken } = require('../utils/jwt')
 
 const Signup = async (req, res) => {
 
@@ -37,7 +37,7 @@ const Login = async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            res.send("All fields compulsary")
+            res.send("All fields compulsory")
         }
 
         const user = await User.findOne({
@@ -58,7 +58,10 @@ const Login = async (req, res) => {
         const token = generateToken(user);
         res.cookie('uid', token);
 
-        // render home page
+        res.send({
+            sucess: true,
+            message: "Login successful"
+        })
 
     }
     catch (err) {
@@ -66,5 +69,13 @@ const Login = async (req, res) => {
     }
 
 }
+const Logout = (req, res) => {
+    res.clearCookie("uid");
 
-module.exports = { Signup, Login };
+    return res.status(200).json({
+        success: true,
+        message: "Logged out successfully"
+    });
+};
+
+module.exports = { Signup, Login, Logout };
