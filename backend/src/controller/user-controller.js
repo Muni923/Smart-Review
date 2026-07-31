@@ -7,7 +7,7 @@ const Signup = async (req, res) => {
     try {
         const { username, email, password } = req.body;
         if (!email || !password || !username) {
-            res.send("All fields compulsary")
+            return res.json({ message: "All fields compulsary" })
         }
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
@@ -18,7 +18,7 @@ const Signup = async (req, res) => {
             password: hashedPassword
         });
 
-        res.send({
+        return res.json({
             success: true,
             message: "user added successfully"
         })
@@ -37,7 +37,10 @@ const Login = async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            res.send("All fields compulsory")
+            return res.json({
+                success: false,
+                message: "All fields compulsory"
+            })
         }
 
         const user = await User.findOne({
@@ -45,27 +48,37 @@ const Login = async (req, res) => {
         });
 
         if (!user) {
-            res.send("Invalid Credentials");
+            return res.json({
+                success: false,
+                message: "Invalid Credentials"
+            });
 
         }
 
         const correctPassword = await bcrypt.compare(password, user.password);
 
         if (!correctPassword) {
-            res.send('Invalid credentaials');
+            return res.json({
+                success: false,
+                message: "Invalid Credentials"
+            });
         }
 
         const token = generateToken(user);
         res.cookie('uid', token);
 
-        res.send({
-            sucess: true,
+        return res.json({
+            success: true,
             message: "Login successful"
         })
 
     }
     catch (err) {
         console.log("error at user controller :", err.message);
+        return res.json({
+            success: false,
+
+        })
     }
 
 }
