@@ -6,9 +6,19 @@ const Signup = async (req, res) => {
 
     try {
         const { username, email, password } = req.body;
+
+
         if (!email || !password || !username) {
             return res.json({ message: "All fields compulsary" })
         }
+        const isAlreadyExistingEmail = await User.findOne({ email });
+
+        if (isAlreadyExistingEmail) {
+            res.json({
+                message: "Account Exists Already"
+            });
+        }
+        
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
