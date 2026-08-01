@@ -20,12 +20,12 @@ function Login() {
                 }
             );
 
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.success) {
                 navigate("/home");
             }
             else {
-                alert(res.data.message);
+                alert(res.data.message)
             }
 
 

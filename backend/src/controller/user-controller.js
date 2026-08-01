@@ -18,7 +18,7 @@ const Signup = async (req, res) => {
                 message: "Account Exists Already"
             });
         }
-        
+
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -76,7 +76,6 @@ const Login = async (req, res) => {
 
         const token = generateToken(user);
         res.cookie('uid', token);
-
         return res.json({
             success: true,
             message: "Login successful"
