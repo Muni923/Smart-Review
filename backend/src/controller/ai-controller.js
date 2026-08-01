@@ -1,5 +1,5 @@
 const { GoogleGenAI } = require("@google/genai");
-const { GEMINI_API_KEY } = require("../config/config")
+const { GEMINI_API_KEY } = require("../config/config");
 const reviewCode = async (req, res) => {
     const { code, language } = req.body;
 

@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Home from "./Pages/Home"
 
 function App() {
-  return (
+  return (<><Home></Home>
     <BrowserRouter>
       <Routes>
         <Route path="/signup" element={<Signup />} />
@@ -12,7 +12,8 @@ function App() {
         <Route path="/home" element={<Home />} />
       </Routes>
     </BrowserRouter>
-  );
+    </>
+);
 }
 
 export default App;
