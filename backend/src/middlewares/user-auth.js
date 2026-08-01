@@ -1,17 +1,26 @@
 const { verifyToken } = require("../utils/jwt");
 
-async function authenticate(req, res, next) {
+async function authenticate(req, res) {
     const userUID = req.cookies?.uid;
 
     try {
-        if (!userUID) return res.send("No token");
+        if (!userUID) return res.json({
+            message: "No token",
+            success: false
+        });
 
         const user = verifyToken(userUID);
 
-        if (!user) return res.send('Invalid or expired token')
+        if (!user) return res.send({
+            message: "INVALID or EXPIRED Token",
+            success: false
+        })
 
         req.user = user;
-        next();
+        res.json({
+            "success": true
+        })
+
     }
     catch (err) {
         console.log("Error at authentication ", err.message);

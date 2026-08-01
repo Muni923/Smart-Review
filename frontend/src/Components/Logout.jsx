@@ -7,7 +7,7 @@ function Logout() {
 
     const handleLogout = async () => {
         try {
-            const res = await axios.post(
+            const res = await axios.get(
                 "http://localhost:3333/logout",
                 {},
                 {
@@ -37,6 +37,7 @@ function Logout() {
 
                         <button
                             className="text-xl p-2 rounded-lg hover:bg-gray-200 transition"
+                            onClick={handleLogout}
                         > LOGOUT ⏻
                         </button>
                     </div>

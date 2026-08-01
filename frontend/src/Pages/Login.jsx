@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 function Login() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Login() {
                 }
             );
 
-            // console.log(res.data);
+           
             if (res.data.success) {
                 navigate("/home");
             }

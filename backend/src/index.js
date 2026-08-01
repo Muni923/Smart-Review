@@ -3,6 +3,10 @@ const app = express();
 const cors = require('cors');
 const userRouter = require('./routes/user-routes');
 const aiRouter=require('./routes/ai-routes');
+
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+
 const mongoConnect = require('./config/mongoConnect');
 mongoConnect();
 

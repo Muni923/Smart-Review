@@ -86,6 +86,7 @@ const Login = async (req, res) => {
         console.log("error at user controller :", err.message);
         return res.json({
             success: false,
+            message:err.message
 
         })
     }
@@ -94,7 +95,7 @@ const Login = async (req, res) => {
 const Logout = (req, res) => {
     res.clearCookie("uid");
 
-    return res.status(200).json({
+    return res.json({
         success: true,
         message: "Logged out successfully"
     });
