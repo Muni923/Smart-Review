@@ -8,6 +8,7 @@ function Auth({ children }) {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const [firstLetter, setfirstLetter] = useState('');
+  
   useEffect(() => {
     const checkAuth = async () => {
       let isAuthenticated = false;

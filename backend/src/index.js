@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors');
 const userRouter = require('./routes/user-routes');
 const aiRouter=require('./routes/ai-routes');
+const {reactURL} = require('./config/config');
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
@@ -14,7 +15,7 @@ const { PORT } = require('./config/config');
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // Your React frontend URL
+    origin: reactURL,
     credentials: true,
   })
 );
@@ -24,5 +25,5 @@ app.use(express.urlencoded({extended:true}));
 app.use('/', userRouter);
 app.use('/ai', aiRouter);
 
-app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Server started at ${PORT}`));
 

@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const {connectURL} = require('./config')
 const mongoConnect = async () => {
 
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/SmartReview');
+        await mongoose.connect(connectURL);
 
         console.log("mongodb connected");
     }

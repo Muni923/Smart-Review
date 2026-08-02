@@ -3,5 +3,7 @@ dotenv.config();
 module.exports = {
     PORT: process.env.PORT,
     JWT_SECRET: process.env.JWT_SECRET,
-    GEMINI_API_KEY: process.env.GEMINI_API_KEY
+    GEMINI_API_KEY: process.env.GEMINI_API_KEY,
+    connectURL: process.env.connectURL,
+    reactURL: process.env.reactURL
 };

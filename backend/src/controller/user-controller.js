@@ -9,12 +9,12 @@ const Signup = async (req, res) => {
 
 
         if (!email || !password || !username) {
-            return res.json({ message: "All fields compulsary" })
+            return res.status(400).json({ message: "All fields compulsary" })
         }
         const isAlreadyExistingEmail = await User.findOne({ email });
 
         if (isAlreadyExistingEmail) {
-            res.json({
+            res.status(409).json({
                 message: "Account Exists Already"
             });
         }
@@ -28,7 +28,7 @@ const Signup = async (req, res) => {
             password: hashedPassword
         });
 
-        return res.json({
+        return res.status(201).json({
             success: true,
             message: "user added successfully"
         })
@@ -47,7 +47,7 @@ const Login = async (req, res) => {
         const { email, password } = req.body;
 
         if (!email || !password) {
-            return res.json({
+            return res.status(400).json({
                 success: false,
                 message: "All fields compulsory"
             })
@@ -58,7 +58,7 @@ const Login = async (req, res) => {
         });
 
         if (!user) {
-            return res.json({
+            return res.status(400).json({
                 success: false,
                 message: "Invalid Credentials"
             });
@@ -68,7 +68,7 @@ const Login = async (req, res) => {
         const correctPassword = await bcrypt.compare(password, user.password);
 
         if (!correctPassword) {
-            return res.json({
+            return res.status(400).json({
                 success: false,
                 message: "Invalid Credentials"
             });
@@ -76,7 +76,7 @@ const Login = async (req, res) => {
 
         const token = generateToken(user);
         res.cookie('uid', token);
-        return res.json({
+        return res.status(201).json({
             success: true,
             message: "Login successful"
         })
@@ -84,9 +84,9 @@ const Login = async (req, res) => {
     }
     catch (err) {
         console.log("error at user controller :", err.message);
-        return res.json({
+        return res.status(500).json({
             success: false,
-            message:err.message
+            message: err.message
 
         })
     }
@@ -95,7 +95,7 @@ const Login = async (req, res) => {
 const Logout = (req, res) => {
     res.clearCookie("uid");
 
-    return res.json({
+    return res.status(201).json({
         success: true,
         message: "Logged out successfully"
     });
