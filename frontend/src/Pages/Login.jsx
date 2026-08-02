@@ -10,7 +10,7 @@ function Login() {
 
         event.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3333/login",
+            const res = await axios.post("https://smart-review-kunk.onrender.com/login",
                 {
                     email,
                     password,

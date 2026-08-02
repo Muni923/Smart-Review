@@ -10,7 +10,7 @@ function Logout() {
     const handleLogout = async () => {
         try {
             const res = await axios.get(
-                "http://localhost:3333/logout",
+                "https://smart-review-kunk.onrender.com/logout",
                 {},
                 {
                     withCredentials: true,

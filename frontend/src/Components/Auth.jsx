@@ -8,13 +8,13 @@ function Auth({ children }) {
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
   const [firstLetter, setfirstLetter] = useState('');
-  
+
   useEffect(() => {
     const checkAuth = async () => {
       let isAuthenticated = false;
 
       try {
-        const res = await axios.get("http://localhost:3333/auth", {
+        const res = await axios.get("https://smart-review-kunk.onrender.com/auth", {
           withCredentials: true,
         });
 

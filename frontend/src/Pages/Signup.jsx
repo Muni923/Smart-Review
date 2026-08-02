@@ -12,7 +12,7 @@ function Signup() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const req = await axios.post('http://localhost:3333/signup',
+            const req = await axios.post('https://smart-review-kunk.onrender.com/signup',
                 {
                     username,
                     email,

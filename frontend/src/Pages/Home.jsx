@@ -13,7 +13,7 @@ function Home() {
       try {
         Setloading(true);
         const res = await axios.post(
-          "http://localhost:3333/ai/review",
+          "https://smart-review-kunk.onrender.com/ai/review",
           { language, code },
           { withCredentials: true }
         );
