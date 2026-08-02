@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Signup from "./Pages/Signup";
+import Login from "./Pages/Login";
 import Home from "./Pages/Home"
 import Logout from "./Components/Logout";
 import Auth from "./Components/Auth";

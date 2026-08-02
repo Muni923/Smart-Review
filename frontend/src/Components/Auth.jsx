@@ -1,11 +1,13 @@
 import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext, createContext } from "react";
 import axios from "axios";
+export const MyContext = createContext();
 
 function Auth({ children }) {
+
   const [loading, setLoading] = useState(true);
   const [authenticated, setAuthenticated] = useState(false);
-
+  const [firstLetter, setfirstLetter] = useState('');
   useEffect(() => {
     const checkAuth = async () => {
       let isAuthenticated = false;
@@ -16,9 +18,13 @@ function Auth({ children }) {
         });
 
         isAuthenticated = res.data.success;
-
-        console.log(res.data);
         
+        if (isAuthenticated) {
+          const f_letter=res.data.name.charAt(0).toUpperCase();
+          setfirstLetter(f_letter);
+
+        }
+
       } catch (err) {
         isAuthenticated = false;
       } finally {
@@ -38,7 +44,11 @@ function Auth({ children }) {
     return <Navigate to="/login" replace />;
   }
 
-  return children;
+  return (
+    <MyContext.Provider value={{ firstLetter }}>
+      {children}
+    </MyContext.Provider>
+  )
 }
 
 export default Auth;

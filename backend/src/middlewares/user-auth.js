@@ -18,7 +18,8 @@ async function authenticate(req, res) {
 
         req.user = user;
         res.json({
-            "success": true
+            "success": true,
+            "name":user.username
         })
 
     }

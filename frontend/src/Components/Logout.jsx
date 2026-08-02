@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { MyContext } from "./Auth"
 
 function Logout() {
+    const { firstLetter } = useContext(MyContext);
     const navigate = useNavigate();
 
     const handleLogout = async () => {
@@ -31,8 +33,8 @@ function Logout() {
                     </h1>
 
                     <div className="flex items-center gap-3 sm:gap-5">
-                        <div className="w-10 h-10 rounded-full bg-purple-900 text-white flex items-center justify-center font-bold text-lg">
-                            { }
+                        <div className="w-10 h-10 rounded-full bg-blue-700 text-white flex items-center justify-center font-bold text-lg">
+                            {firstLetter}
                         </div>
 
                         <button

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 function Signup() {
@@ -11,29 +11,29 @@ function Signup() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-try {
-        const req = await axios.post('http://localhost:3333/signup',
-            {
-                username,
-                email,
-                password,
-            },
-            {
-                withCredentials: true,
+        try {
+            const req = await axios.post('http://localhost:3333/signup',
+                {
+                    username,
+                    email,
+                    password,
+                },
+                {
+                    withCredentials: true,
+                }
+            );
+
+            if (req.data.success) {
+                navigate('/login')
             }
-        );
-
-        if (req.data.success) {
-            navigate('/login')
+            else {
+                alert(req.data.message);
+            }
         }
-        else {
-            alert(req.data.message);
-        }
-    }
-    catch(err){
-        alert(err.message);
+        catch (err) {
+            alert(err.message);
 
-    }
+        }
 
 
 
@@ -42,8 +42,8 @@ try {
 
         <div className="min-h-screen flex justify-center items-center bg-gray-100">
             <div className="bg-white p-8 rounded-xl shadow-xl w-96">
-                <h1 className="text-3xl font-bold text-center mb-6">
-                    SmartReview
+                <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">
+                    𝕾𝖒𝖆𝖗𝖙 𝕽𝖊𝖛𝖎𝖊𝖜
                 </h1>
 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -85,6 +85,10 @@ try {
                         </button>
                     </div>
                 </form>
+
+                <div className="flex justify-center mt-2">Already have an Account?
+                    <Link className=" text-blue-500 ml-1" to='/login'> Login Here</Link>
+                </div>
             </div>
         </div>
     );

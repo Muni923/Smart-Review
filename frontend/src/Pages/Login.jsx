@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 function Login() {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ function Login() {
                 }
             );
 
-           
+
             if (res.data.success) {
                 navigate("/home");
             }
@@ -38,8 +38,8 @@ function Login() {
     return (
         <div className="min-h-screen flex justify-center items-center bg-gray-100">
             <div className="bg-white p-8 rounded-xl shadow-xl w-96">
-                <h1 className="text-3xl font-bold text-center mb-6">
-                    SmartReview
+                <h1 className="text-3xl font-bold text-center text-blue-700 mb-6">
+                    𝕾𝖒𝖆𝖗𝖙 𝕽𝖊𝖛𝖎𝖊𝖜
                 </h1>
 
                 <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
@@ -73,6 +73,9 @@ function Login() {
                         </button>
                     </div>
                 </form>
+                <div className="flex justify-center mt-2">Dont have an Account? 
+                    <Link className=" text-blue-500 ml-1" to='/signup'> Register Here</Link>
+                </div>
             </div>
         </div>
     );
