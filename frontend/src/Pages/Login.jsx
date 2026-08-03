@@ -32,7 +32,7 @@ function Login() {
         }
         catch (err) {
 
-            alert("Login failed");
+            alert(res.data?.message?.err||"Login failed");
         }
     }
     return (
