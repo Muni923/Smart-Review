@@ -20,7 +20,7 @@ function Home() {
 
       SetAIresponse(res.data.review);
     } catch (err) {
-      alert(res.data?.review|| "Login failed");
+      alert(err.response?.data?.review || "Login failed");
       setCode("");
       SetAIresponse("");
       setLanguage("");
