@@ -44,8 +44,15 @@ function Home() {
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
             <option value="c">C</option>
-            <option value="cpp">C++</option>
-            <option value="java">Java</option>
+            <option value="c++">C++</option>
+            <option value="typescript">typescript</option>
+            <option value="C#">C#</option>
+            <option value="rust">Rust</option>
+            <option value="kotlin">Kotlin</option>
+            <option value="swift">Swift</option>
+            <option value="PHP">PHP</option>
+            <option value="golang">Golang</option>
+
           </select>
           <button
             onClick={reviewCode}
